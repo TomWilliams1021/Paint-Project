@@ -19,10 +19,10 @@ public class Main {
         int numOfWalls = randomNumber.nextInt(5-1) + 1;
         int totalCost = 0;
         int totalPaintInLitres = 0;
-        //WIP
         int totalManHours = 0;
         int labourCostPerHour = 10;
         int totalCostOfLabour = 0;
+        boolean needLadder = false;
 
 
         System.out.println("There are " + numOfWalls +" walls to paint.");
@@ -43,13 +43,20 @@ public class Main {
             totalManHours += (int) Math.ceil(areaOfWallInMSquared / squareMetersPaintedPerHour);
             totalPaintInLitres += volumeOfPaintNeededInLitres;
             totalCost += priceEstimate;
+
+            if (heightOfWallInMM >= 2000){
+                needLadder = true;
+            }
         }
+
+        String ladderMessage = (needLadder == true) ? "You need to bring a ladder." : "You do not need a ladder.";
 
         totalCostOfLabour = totalManHours * labourCostPerHour;
 
         System.out.println("You will need " + totalPaintInLitres + " Litres of paint.");
         System.out.println("The total cost of paint for this project will be roughly £" + totalCost + ".");
-        System.out.println("The total labour cost for this project will be roughly £" + totalCostOfLabour + " at a rate of £" + labourCostPerHour + " per-hour.");
+        System.out.println("The total labour cost for this project will be £" + totalCostOfLabour + " at a rate of £" + labourCostPerHour + " per-hour.");
+        System.out.println(ladderMessage);
         System.out.println("Process Complete.");
 
     }
