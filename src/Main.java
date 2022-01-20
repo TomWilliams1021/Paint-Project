@@ -62,8 +62,8 @@ public class Main {
         System.out.println("You will need " + totalPaintInLitres + " Litres of paint.");
         System.out.println("The total cost of paint for this project will be roughly £" + totalCost + ".");
         System.out.println("The total labour cost for this project will be £" + totalCostOfLabour + " at a rate of £" + labourCostPerHour + " per-hour.");
-        System.out.println(shorterPainterMessage);
         System.out.println(ladderMessage);
+        System.out.println(shorterPainterMessage);
         System.out.println("Process Complete.");
 
     }
