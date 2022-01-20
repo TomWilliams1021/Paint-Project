@@ -16,7 +16,7 @@ public class Main {
         int priceEstimate = 0;
         int volumeOfPaintNeededInLitres = 0;
         int wallAreaDividePaintCoverage = 0;
-        int numOfWalls = randomNumber.nextInt(5-1) + 1;
+        int numOfWalls = randomNumber.nextInt(4-1) + 1;
         int totalCost = 0;
         int totalPaintInLitres = 0;
         int totalManHours = 0;
@@ -24,9 +24,25 @@ public class Main {
         int totalCostOfLabour = 0;
         boolean needLadder = false;
         boolean needShorterPainter = false;
+        String numOfWallsString = "";
 
+        switch(numOfWalls){
+            case 1:
+                numOfWallsString = "There is only one wall to paint.";
+                break;
+            case 2:
+                numOfWallsString = "There are two walls to paint.";
+                break;
+            case 3:
+                numOfWallsString = "There are three walls to paint.";
+            case 4, 5:
+                numOfWallsString = "There are more than three walls this will be a big job.";
+            default:
+                numOfWallsString = "This isnt supposed to happen ... whats going on!";
+                break;
+        }
 
-        System.out.println("There are " + numOfWalls +" walls to paint.");
+        System.out.println(numOfWallsString);
 
         for(int loopCounter = 1; loopCounter <= numOfWalls; loopCounter++) {
 
