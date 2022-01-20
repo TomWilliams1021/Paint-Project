@@ -23,6 +23,7 @@ public class Main {
         int labourCostPerHour = 10;
         int totalCostOfLabour = 0;
         boolean needLadder = false;
+        boolean needShorterPainter = false;
 
 
         System.out.println("There are " + numOfWalls +" walls to paint.");
@@ -47,15 +48,21 @@ public class Main {
             if (heightOfWallInMM >= 2000){
                 needLadder = true;
             }
+            else if(heightOfWallInMM <= 1200){
+                needShorterPainter = true;
+            }
         }
 
         String ladderMessage = (needLadder == true) ? "You need to bring a ladder." : "You do not need a ladder.";
+        String shorterPainterMessage = (needShorterPainter == true) ? "A ceiling is very low, you might need a small painter'" : "The ceilings are a resonable height dont worry.";
+
 
         totalCostOfLabour = totalManHours * labourCostPerHour;
 
         System.out.println("You will need " + totalPaintInLitres + " Litres of paint.");
         System.out.println("The total cost of paint for this project will be roughly £" + totalCost + ".");
         System.out.println("The total labour cost for this project will be £" + totalCostOfLabour + " at a rate of £" + labourCostPerHour + " per-hour.");
+        System.out.println(shorterPainterMessage);
         System.out.println(ladderMessage);
         System.out.println("Process Complete.");
 
