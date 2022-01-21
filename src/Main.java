@@ -73,8 +73,8 @@ public class Main {
             }
         }
 
-        String ladderMessage = (needLadder == true) ? "You need to bring a ladder." : "You do not need a ladder.";
-        String shorterPainterMessage = (needShorterPainter == true) ? "A ceiling is very low, you might need a small painter'" : "The ceilings are a resonable height dont worry.";
+        String ladderMessage = (needLadder == true) ? "At least one ceiling is very high, you need to bring a ladder." : "You don't need a ladder for this project.";
+        String shorterPainterMessage = (needShorterPainter == true) ? "At least one ceiling is very low, you might need a short painter'" : "The ceilings are a resonable height don't worry.";
 
 
         totalCostOfLabour = totalManHours * labourCostPerHour;
