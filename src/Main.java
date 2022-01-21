@@ -36,16 +36,13 @@ public class Main {
         do{
 
             System.out.println("What is the height of this wall in millimeters?");
-            String heightOfWallInMMString = userInputScanner.nextLine();
-            int heightOfWallInMM = Integer.parseInt(heightOfWallInMMString);   //Add Try Catch incase non number characters are inputed.
+            int heightOfWallInMM = numberInputReader();   //Add Try Catch incase non number characters are inputed.
 
             System.out.println("What is the width of this wall in millimeters?");
-            String widthOfWallInMMString = userInputScanner.nextLine();
-            int widthOfWallInMM = Integer.parseInt(widthOfWallInMMString);      //Add Try Catch incase non number characters are inputed.
+            int widthOfWallInMM = numberInputReader();      //Add Try Catch incase non number characters are inputed.
 
             System.out.println("What type of paint do you want to use? For Low Quality enter 0, For Medium enter 1, For High enter 2 and for UltraHigh enter 3.");
-            String paintQualityString = userInputScanner.nextLine();
-            int paintQualityInt = Integer.parseInt(paintQualityString);
+            int paintQualityInt = numberInputReader();
             for(int i = 0; i < paintPricePerCan[0].length; i++ ){
                 if(i == paintQualityInt){
                     priceOfPaintPerLitreInPounds = divider(paintPricePerCan[1][i], 100);
@@ -79,7 +76,7 @@ public class Main {
             }
 
             System.out.println("Do you want to paint another wall? Enter Y or y for Yes and N or n for No.");
-            anotherWallString = userInputScanner.nextLine();
+            anotherWallString = inputReader();
             if(anotherWallString.contains("Y") || anotherWallString.contains("y")){
                 anotherWall = true;
                 numOfWalls++;
@@ -159,5 +156,18 @@ public class Main {
 
     public static int divider(int num1, int num2){
         return num1 / num2;
+    }
+
+    public static int numberInputReader(){
+        String inputString = inputReader();
+        int inputStringToInteger = Integer.parseInt(inputString);
+        return inputStringToInteger;
+    }
+
+    public static String inputReader(){
+        //Don't put scanners in methods in practice as it breaks Unit Testing functionality.
+        Scanner userInputScanner = new Scanner(System.in);
+        String inputString = userInputScanner.nextLine();
+        return inputString;
     }
 }
