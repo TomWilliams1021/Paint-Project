@@ -39,32 +39,32 @@ public class Main {
             String heightOfWallInMMString = userInputScanner.nextLine();
             int heightOfWallInMM = Integer.parseInt(heightOfWallInMMString);   //Add Try Catch incase non number characters are inputed.
 
-            System.out.println("What is the width of this wall in millimeters");
+            System.out.println("What is the width of this wall in millimeters?");
             String widthOfWallInMMString = userInputScanner.nextLine();
             int widthOfWallInMM = Integer.parseInt(widthOfWallInMMString);      //Add Try Catch incase non number characters are inputed.
 
-            System.out.println("What type of paint do you want to use? For Low Quality enter 0, For Medium enter 1, For High enter 2 and for UltraHigh enter 3");
+            System.out.println("What type of paint do you want to use? For Low Quality enter 0, For Medium enter 1, For High enter 2 and for UltraHigh enter 3.");
             String paintQualityString = userInputScanner.nextLine();
             int paintQualityInt = Integer.parseInt(paintQualityString);
             for(int i = 0; i < paintPricePerCan[0].length; i++ ){
                 if(i == paintQualityInt){
-                    priceOfPaintPerLitreInPounds = (paintPricePerCan[1][i] / 100);
+                    priceOfPaintPerLitreInPounds = divider(paintPricePerCan[1][i], 100);
                 }
             }
 
-            areaOfWallInMSquared = (heightOfWallInMM / 1000) * (widthOfWallInMM / 1000);
-            wallAreaDividePaintCoverage = (int) Math.ceil(areaOfWallInMSquared / paintCoveragePerLitre);
-            volumeOfPaintNeededInLitres = (wallAreaDividePaintCoverage * numOfCoatsOfPaint);
+            areaOfWallInMSquared = multiplier(divider(heightOfWallInMM, 1000), divider(widthOfWallInMM, 1000));
+            wallAreaDividePaintCoverage = (int) Math.ceil(divider(areaOfWallInMSquared, paintCoveragePerLitre));
+            volumeOfPaintNeededInLitres = multiplier(wallAreaDividePaintCoverage, numOfCoatsOfPaint);
             if (volumeOfPaintNeededInLitres == 0){
                 volumeOfPaintNeededInLitres = 1;
             }
-            priceEstimate = volumeOfPaintNeededInLitres * priceOfPaintPerLitreInPounds;
+            priceEstimate = multiplier(volumeOfPaintNeededInLitres, priceOfPaintPerLitreInPounds);
 
 
             System.out.println("The area of this wall is " + areaOfWallInMSquared + " square meters. Therefore you will need at least " + volumeOfPaintNeededInLitres + " litres of paint.");
             System.out.println("This will cost £" + priceEstimate + ".");
 
-            totalManHours += (int) Math.ceil(areaOfWallInMSquared / squareMetersPaintedPerHour);
+            totalManHours += (int) Math.ceil(divider(areaOfWallInMSquared, squareMetersPaintedPerHour));
             if (totalManHours == 0){
                 totalManHours = 1;
             }
@@ -140,9 +140,9 @@ public class Main {
         System.out.println(numOfWallsString);
 
         String ladderMessage = (needLadder == true) ? "At least one ceiling is very high, you need to bring a ladder." : "You don't need a ladder for this project.";
-        String shorterPainterMessage = (needShorterPainter == true) ? "At least one ceiling is very low, you might need a short painter'" : "The ceilings are a resonable height don't worry.";
+        String shorterPainterMessage = (needShorterPainter == true) ? "At least one ceiling is very low, you might need a short painter." : "The ceilings are a resonable height don't worry.";
 
-        totalCostOfLabour = totalManHours * labourCostPerHour;
+        totalCostOfLabour = multiplier(totalManHours, labourCostPerHour);
 
         System.out.println("You will need " + totalPaintInLitres + " Litres of paint.");
         System.out.println("The total cost of paint for this project will be roughly £" + totalCost + ".");
@@ -151,5 +151,13 @@ public class Main {
         System.out.println(shorterPainterMessage);
         System.out.println("Process Complete.");
 
+    }
+
+    public static int multiplier(int num1, int num2){
+        return num1 * num2;
+    }
+
+    public static int divider(int num1, int num2){
+        return num1 / num2;
     }
 }
