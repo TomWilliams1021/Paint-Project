@@ -13,8 +13,8 @@ public class Main {
 
         short numOfCoatsOfPaint = 2;
         short paintCoveragePerLitre = 6;
-        short priceOfPaintPerLitreInPounds = 5;
         short squareMetersPaintedPerHour = 7;
+        int priceOfPaintPerLitreInPounds = 0;
         int areaOfWallInMSquared = 0;
         int priceEstimate = 0;
         int volumeOfPaintNeededInLitres = 0;
@@ -27,19 +27,30 @@ public class Main {
         int totalCostOfLabour = 0;
         boolean needLadder = false;
         boolean needShorterPainter = false;
-        String numOfWallsString = "";
         boolean anotherWall = true;
+        String numOfWallsString = "";
         String anotherWallString = "";
+
+        int[][] paintPricePerCan = {{0, 1, 2, 3},{1000, 1500, 2500, 5000}};
 
         do{
 
             System.out.println("What is the height of this wall in millimeters?");
             String heightOfWallInMMString = userInputScanner.nextLine();
-            int heightOfWallInMM = Integer.parseInt(heightOfWallInMMString);  //Add Try Catch incase non number characters are inputted.
+            int heightOfWallInMM = Integer.parseInt(heightOfWallInMMString);   //Add Try Catch incase non number characters are inputed.
 
             System.out.println("What is the width of this wall in millimeters");
             String widthOfWallInMMString = userInputScanner.nextLine();
-            int widthOfWallInMM = Integer.parseInt(widthOfWallInMMString);      //Add Try Catch incase non number characters are inputted.
+            int widthOfWallInMM = Integer.parseInt(widthOfWallInMMString);      //Add Try Catch incase non number characters are inputed.
+
+            System.out.println("What type of paint do you want to use? For Low Quality enter 0, For Medium enter 1, For High enter 2 and for UltraHigh enter 3");
+            String paintQualityString = userInputScanner.nextLine();
+            int paintQualityInt = Integer.parseInt(paintQualityString);
+            for(int i = 0; i < paintPricePerCan[0].length; i++ ){
+                if(i == paintQualityInt){
+                    priceOfPaintPerLitreInPounds = (paintPricePerCan[1][i] / 100);
+                }
+            }
 
             areaOfWallInMSquared = (heightOfWallInMM / 1000) * (widthOfWallInMM / 1000);
             wallAreaDividePaintCoverage = (int) Math.ceil(areaOfWallInMSquared / paintCoveragePerLitre);
@@ -67,14 +78,16 @@ public class Main {
                 needShorterPainter = true;
             }
 
-            System.out.println("Do you want to paint another wall? Enter Y for Yes and N for No.");
+            System.out.println("Do you want to paint another wall? Enter Y or y for Yes and N or n for No.");
             anotherWallString = userInputScanner.nextLine();
-            if(anotherWallString.contains("Y")){
+            if(anotherWallString.contains("Y") || anotherWallString.contains("y")){
                 anotherWall = true;
                 numOfWalls++;
-            }else if(anotherWallString.contains("N")){
+            }
+            else if(anotherWallString.contains("N") || anotherWallString.contains("n")){
                 anotherWall = false;
-            }else{
+            }
+            else{
                 System.out.println("No proper input detected, we are going to assume you don't want to calculate another wall.");
                 anotherWall = false;
             }
@@ -120,11 +133,8 @@ public class Main {
             case 3:
                 numOfWallsString = "There are three walls to paint.";
                 break;
-            case 4, 5:
-                numOfWallsString = "There are more than three walls this will be a big job.";
-                break;
             default:
-                numOfWallsString = "This isnt supposed to happen ... whats going on!";
+                numOfWallsString = "There are more than three walls this will be a big job.";
                 break;
         }
         System.out.println(numOfWallsString);
