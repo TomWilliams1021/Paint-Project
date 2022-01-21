@@ -160,12 +160,12 @@ public class Main {
 
     public static int numberInputReader(){
         String inputString = inputReader();
-        int inputStringToInteger = Integer.parseInt(inputString);
+        int inputStringToInteger = Integer.parseInt(inputString);   //need a try-catch to catch characters hat aren't numbers being entered.
         return inputStringToInteger;
     }
 
     public static String inputReader(){
-        //Don't put scanners in methods in practice as it breaks Unit Testing functionality.
+        //Don't put scanners in methods in practice as it breaks Unit Testing and other functionality.
         Scanner userInputScanner = new Scanner(System.in);
         String inputString = userInputScanner.nextLine();
         return inputString;
