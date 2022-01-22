@@ -122,7 +122,7 @@ public class Main {
 
         switch(numOfWalls){
             case 1:
-                numOfWallsString = "There is only one wall to paint.";
+                numOfWallsString = "There is only one wall to paint!";
                 break;
             case 2:
                 numOfWallsString = "There are two walls to paint.";
